@@ -1,8 +1,11 @@
 package com.starq.commercecart.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -26,5 +29,11 @@ public class EmployeeController {
     @PostMapping()
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee){
         return new ResponseEntity<Employee>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
+    }
+
+    //build get all employees rest api
+    @GetMapping()
+    public ResponseEntity<List<Employee>> getAllEmployees(){
+        return new ResponseEntity<List<Employee>>(employeeService.getAllEmployees(), HttpStatus.OK);
     }
 }

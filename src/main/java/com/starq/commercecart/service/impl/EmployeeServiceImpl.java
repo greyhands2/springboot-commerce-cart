@@ -1,5 +1,6 @@
 package com.starq.commercecart.service.impl;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.starq.commercecart.service.EmployeeService;
@@ -27,5 +28,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee saveEmployee(Employee employee){
 
         return employeeRepository.save(employee);
+    }
+
+    @Override
+    public List<Employee> getAllEmployees(){
+        return employeeRepository.findAll();
     }
 }
