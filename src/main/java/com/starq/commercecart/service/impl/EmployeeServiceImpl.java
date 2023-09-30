@@ -1,11 +1,14 @@
 package com.starq.commercecart.service.impl;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.starq.commercecart.service.EmployeeService;
 import com.starq.commercecart.repository.EmployeeRepository;
 import com.starq.commercecart.model.Employee;
+import com.starq.commercecart.exception.ResourceNotFoundException;
 
 //We do not need to add @Transaction annotation here because Spring dataJpa internally provides @Transaction to all it's methods
 
@@ -33,5 +36,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getAllEmployees(){
         return employeeRepository.findAll();
+    }
+
+    @Override
+    public Employee getEmployeeById(long id){
+        // Optional<Employee> employee = employeeRepository.findById(id);
+        // if(employee.isPresent()){
+        //     return employee.get();
+        // } else{
+        //     throw new ResourceNotFoundException("Employee", "Id", id);
+        // }
+
+        // or using lambda
+        return employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee", "Id", id));
+        
     }
 }

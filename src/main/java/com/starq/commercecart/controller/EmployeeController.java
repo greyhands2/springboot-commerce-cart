@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
@@ -35,5 +36,12 @@ public class EmployeeController {
     @GetMapping()
     public ResponseEntity<List<Employee>> getAllEmployees(){
         return new ResponseEntity<List<Employee>>(employeeService.getAllEmployees(), HttpStatus.OK);
+    }
+
+
+    //build get employee by id rest api
+    @GetMapping("{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") long employeeId){
+        return new ResponseEntity<Employee>(employeeService.getEmployeeById(employeeId), HttpStatus.OK);
     }
 }

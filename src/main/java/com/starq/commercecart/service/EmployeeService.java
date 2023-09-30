@@ -5,4 +5,5 @@ import com.starq.commercecart.model.Employee;
 public interface EmployeeService {
     Employee saveEmployee(Employee employee);
     List<Employee> getAllEmployees();
+    Employee getEmployeeById(long id);
 }
